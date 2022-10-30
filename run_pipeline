@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# This is a Bash script for making a short running command of the pipeline, i.e. "./run_pipeline" (should be executed in Terminal opened in common directory).
+# Note: This file needs to be executed as root (login user password needed)! Otherwise antiSMASH and BiGSCAPE might not be able to run!
+
+source ./thirdparty_programs/asenv/bin/activate # Important: Activate the virtual environment (assumed already created after setup), to access e.g. required Python libraries.
+python start_and_command.py # Actual running command of the pipeline.
