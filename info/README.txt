@@ -2,40 +2,48 @@ INSTRUCTIONS FOR SETUP AND RUNNING THE BIOINFORMATIC PIPELINE
 
 >>> Short description of the bioinformatic pipeline:
 
-> FUNCTION: This pipeline can be used to (1) find biosynthetic gene clusters (BGCs) on all DNA sequences given in FASTA file(s), (2) select from all identified BGCs the ones that can be considered complete and functional BGCs (and not partial ones), and (3) analyze the similarity between the selected BGCs and the well-known BGCs from the database MIBiG.
+> FUNCTION: This pipeline is developed to (1) find biosynthetic gene clusters (BGCs) on all DNA sequences given in FASTA file(s), (2) select from all identified BGCs the ones that can be considered complete and functional BGCs, and (3) analyze the similarity between the selected BGCs and the well-known BGCs from the database MIBiG.
 > INPUT:    One or many FASTA files. These files need to be located (anywhere) inside the designated input directory (which is "input_for_antiSMASH").
 > OUTPUT:   Output of all three mentioned tasks can be found in the designated directories (which are "output_from_antiSMASH", "selected_BGCs", "statistics" and "output_from_BiGSCAPE").
 
 ________________________________________________________________________________________________________________________
 
 
-SETUP (IMPORTANT):
+SYSTEM REQUIREMENTS (IMPORTANT)
 
->>> Command for creating a Python virtual environment, installing two utility tools (curl and Docker), and the two required third-party programs, antiSMASH and BiG-SCAPE CORASON, to defined directory "thirdparty_programs" (if the two programs not preinstalled on local computer or installed in different locations).
+>>> This pipeline should be operated on a Linux system. If not available on local computer, a virtual Linux system can be downloaded from the provider Oracle VM VirtualBox (specifically the package "VirtualBox-6.1.40-154048-Win" via link https://download.virtualbox.org/virtualbox/6.1.40/ together with the extension package "Oracle_VM_VirtualBox_Extension_Pack-6.1.16" via link https://www.virtualbox.org/wiki/Download_Old_Builds_6_1 and the (recommended) graphical package "kali-linux-2022.4-installer-amd64" via link https://www.kali.org/get-kali/), and set up on local computer (host system, e.g. Windows, will not be removed by the process) (setup of the virtual system takes about 30 minutes).
+
+>>> This pipeline requires approx. 17 Gb on hard disk for setup and at least 2 CPUs and 2 Gb on RAM for an efficient operation.
+
+________________________________________________________________________________________________________________________
+
+
+SETUP (IMPORTANT)
+
+>>> Command for creating a Python virtual environment, installing two utility tools (curl and docker), and the two required third-party programs, antiSMASH and BiG-SCAPE CORASON, to defined directory "thirdparty_programs" (if the two programs not preinstalled on local computer or installed in different locations):
 
 > Run all-in-one setup file "setup.py" with Python, e.g. by typing in Terminal (opened in common directory, that is, directory that contains all files of pipeline):
 python3 setup.py
-> Note: A different running command to run setup file can be used (e.g. python). First time setup will take about 30 minutes. An internet connection is needed for this setup. During setup, certain input from user will be prompted e.g. user password, confirmation to download certain packages.
+> Note: A different running command to run setup file can be used (e.g. python). First time setup will take about 5 minutes. An internet connection is needed for this setup. During setup, certain input from user will be prompted e.g. user password, confirmation to download certain packages.
 
 > Then activate the created Python virtual environment and install to this environment the following Python libraries (highly recommended, even if already available):
 source ./thirdparty_programs/asenv/bin/activate
 pip install tabulate
 pip install pandas
 pip install matplotlib
-> Note: until here, setup will take about 1,5 hours and will use up 17 Gb hard disk.
 
 ________________________________________________________________________________________________________________________
 
 
-RUN (IMPORTANT):
+RUN (IMPORTANT)
 
->>> Commands for running pipeline (only after running setup or if required programs already preinstalled in defined location).
+>>> Commands for running pipeline (only after running setup or if required programs already preinstalled in defined location):
 
 > Move input files into input directory for pipeline. There is no specific position for these files, i.e. the input files can be placed anywhere inside the input directory (they can all be found by the pipeline).
-> Change execution right of running script (in case script not executable, otherwise skip to second code line), then run the pipeline by typing in Terminal (also in common directory):
+> Change execution right of running script, then run the pipeline by typing in Terminal (also in common directory):
 chmod +x run_pipeline
 sudo ./run_pipeline
-> Note: This pipeline must be executed as root, therefore user login password is needed at the beginning to run pipeline! Password will then not be asked again during pipeline is running. By first time running pipeline in task 1 and 3, certain large-sized packages might be installed by Docker to run antiSMASH and BiG-SCAPE CORASON. This only happens once, in next runs these will not be installed again.
+> Note: This pipeline must be executed as root, therefore user login password is needed at the beginning to run pipeline! Password will then not be asked again while pipeline is running. At first time run of pipeline for task 1 and/or 3, certain large-sized packages might be installed by docker to run antiSMASH and BiG-SCAPE CORASON. This only happens at first run of pipeline, and will take about 40 minutes. In next runs, these will not be installed again.
 
 ________________________________________________________________________________________________________________________
 
