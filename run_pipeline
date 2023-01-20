@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# This is a Bash script for making a short running command of the pipeline, i.e. "./run_pipeline" (should be executed in Terminal opened in common directory).
-# Note: This file needs to be executed as root (login user password needed)! Otherwise antiSMASH and BiGSCAPE might not be able to run!
+# This is a Bash script for making a short running command of the pipeline. The command for running the pipeline is:
+# ./run_pipeline 
+# and should be executed in Terminal opened in common directory (i.e. directory that contains all files and folders of the pipeline).
 
-source ./thirdparty_programs/asenv/bin/activate # Important: Activate the virtual environment (assumed already created after setup), to access e.g. required Python libraries.
-python start_and_command.py # Actual running command of the pipeline.
+sudo python start_and_command.py 
+
+# Note: user password is required due to usage of sudo. The running command uses sudo due to docker commands in scripts of antiSMASH and BiGSCAPE. By default, docker can only be run by root (i.e. with sudo). Hence, without sudo, the two programs cannot be executed.
