@@ -21,6 +21,7 @@ from   analyze_and_assess import delimiter_btw_data_of_genes_and_DNA_seq_of_whol
 import make_outputfiles_and_stats
 import print_to_terminal
 import run_bigscape
+import change_permit
 
 
 # # --------------------------------------------------------------------------TASK 1 OF PIPELINE: Gene prediction with antiSMASH--------------------------------------------------------------------------
@@ -46,6 +47,10 @@ def TASK_1():
     Genbank (.gbk) file(s) of detected BGCs in given input file(s).
     """
     print("\n\n\n>>> Initiating task 1 (BGC-detection by antiSMASH)...")
+    
+    # # --------------Change permission of all files and folders in common directory------------------
+    change_permit.change_permit_of_all_dirs_and_files_in_common_dir() # Allow access to all input files (in case some input files are initially not accessible by user).
+    # # --------------Change permission of all files and folders in common directory------------------   
 
     # # --------------Define paths and create directory for input and output of task---------------
     path_of_input_dir_for_task_1  = create.create_directory_if_not_exists(names_and_paths.path_of_directory_of_input_for_antismash)
@@ -110,7 +115,7 @@ def TASK_1():
         # # -----------Checkpoint for name collision of output: if an antiSMASH-output directory exists with same name-----------------------
 
         # # --------------Run antiSMASH for each input file---------------
-        if side_options.verbose == True: print("\n\n\n>>> Run antiSMASH for file \"" + name_of_inputfile + "\"...")
+        if side_options.verbose == True: print("\n\n\n>>> Running antiSMASH for file \"" + name_of_inputfile + "\"...")
         number_of_antismash_runs += run_antismash.run_antismash(path_of_inputfile, path_of_antismash_output_directory) # Run antiSMASH for input file and update the number of antiSMASH runs.
         # # --------------Run antiSMASH for each input file---------------
 
@@ -153,6 +158,10 @@ def TASK_2(param_for_preliminary_selection, param_for_main_selection, param_for_
     Genbank (.gbk) file(s) of BGCs that passed main or second-chance selection (content unmodified compared to input file(s)).
     """
     print("\n\n\n>>> Initiating task 2 (BGC-selection)...")
+    
+    # # --------------Change permission of all files and folders in common directory------------------
+    change_permit.change_permit_of_all_dirs_and_files_in_common_dir() # Allow access to all input files (in case some input files are initially not accessible by user).
+    # # --------------Change permission of all files and folders in common directory------------------
 
     # # --------------Define paths and create directory for input and output of task---------------
     path_of_input_dir_for_task_2  = create.create_directory_if_not_exists(names_and_paths.path_of_directory_of_output_from_antismash)
@@ -306,6 +315,10 @@ def TASK_3(cutoffs):
     An output directory that contains the file "index.html" with the results of similarity analysis.
     """
     print("\n\n\n>>> Initiating task 3 (similarity analysis by BiG-SCAPE CORASON)...")
+    
+    # # --------------Change permission of all files and folders in common directory------------------
+    change_permit.change_permit_of_all_dirs_and_files_in_common_dir() # Allow access to all input files (in case some input files are initially not accessible by user).
+    # # --------------Change permission of all files and folders in common directory------------------
 
     # # --------------Define paths and create directory for input and output of task---------------
     path_of_input_dir_for_task_3  = create.create_directory_if_not_exists(names_and_paths.path_of_directory_of_selected_BGCs)
@@ -453,8 +466,12 @@ def Entry_Point():
 
         # Note: do not use "if...elif..." block here as that would only allow one task at maximum to be executed!
         # # --------------Execute all specified task(s)------------------
+        
+        # # --------------Change permission of all files and folders in common directory------------------
+        change_permit.change_permit_of_all_dirs_and_files_in_common_dir() # Allow access to all output files (in case some output files are created by docker, e.g. after running antiSMASH and BiGSCAPE, and initially not accessible by user).
+        # # --------------Change permission of all files and folders in common directory------------------
 
-        print("\n\n\n>>> All specified task(s) completed!\n\n")
+        print("\n\n\n>>> All specified task(s) completed!\n\n") # Exit point: main program will end here if executed successfully.
 
     else: # In case "prompt_user_to_input_tasks_to_execute" is set to False (i.e. assume user would like to execute all tasks without being asked):
         # # --------------Get input of values for parameters needed for all tasks------------------
@@ -487,6 +504,10 @@ def Entry_Point():
 
         TASK_3(cutoffs)
         # # --------------Execute all tasks------------------
+        
+        # # --------------Change permission of all files and folders in common directory------------------
+        change_permit.change_permit_of_all_dirs_and_files_in_common_dir() # Allow access to all output files (in case some output files are created by docker, e.g. after running antiSMASH and BiGSCAPE, and initially not accessible by user).
+        # # --------------Change permission of all files and folders in common directory------------------
 
         print("\n\n\n>>> All specified task(s) completed!\n\n") # Exit point: main program will end here if executed successfully.
 
@@ -497,4 +518,4 @@ if __name__ == '__main__':
     Entry_Point() # Call main function that starts pipeline, only if this script is executed directly (and not as an imported module).
 
 
-# Note to myself: use sys.argv[1] to take path of input directory from argument of running command?
+# Note to myself: sys.argv[1] can be used to take path of input directory from argument of running command. However, the question is, whether the user is willing to type a lot...
