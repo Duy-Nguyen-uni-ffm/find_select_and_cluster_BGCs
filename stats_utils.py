@@ -1,5 +1,5 @@
-''' This module contains utility functions that help visualize the plots of statistics in an optimal way: the first function groups all detected products belonging to corresponding classes of products so as to simplify the
-    plots of product statistics, while the second function assigns the bars on the plots for product(s) of selected BGCs certain unique colors and patterns, thereby highlighting them on the plot, and also making them distinguishable. '''
+''' This module contains utility functions that help visualize the plots of statistics in an optimal way: the first function groups all detected products belonging to corresponding classes of biosynthetic products so as to simplify the
+    plots of product statistics, while the second function assigns the bars on the plots for product(s) of selected BGCs unique colors and patterns, thereby highlighting them on the plot, and also making them distinguishable. '''
 
 
 import random
@@ -20,14 +20,14 @@ def group_products(product_stats):
     product_stats_grouped : dict of {str : int}
         Statistics of product(s) of selected BGCs where products belonging to same class are grouped and represented by the class (occurrence frequency of each class is sum of that of its member product(s)).
     """
-    list_of_predefined_groups_of_products = ["hybrid", "others", "RiPP", "NRPS-like", "T1PKS", "NRPS", "arylpolyene", "T3PKS", "terpene"] # Note: this list can be updated by user. The order of the groups of products in this list is also the order of the products when printed out, plotted and written in file. Important: the groups "others", "hybrid" should always be in this list.
+    list_of_predefined_groups_of_products = ["hybrid", "others", "RiPP", "NRPS-like", "T1PKS", "NRPS", "arylpolyene", "T3PKS", "terpene"] # Note: this list can be updated by user. Also, the order of the product groups in this list is also the order of the product groups for printing out on Terminal, plotting and writing in file. Important: the groups "others", "hybrid" should always be in this list.
     product_stats_grouped                 = dict.fromkeys(list_of_predefined_groups_of_products, 0)
     for product in product_stats:
         if   product in list_of_predefined_groups_of_products:                                                  # Predefined groups of products that should only be plotted
             product_stats_grouped[product]   += product_stats[product]
         elif "+" in product:                                                                                    # Hybrid BGCs contain "+" in their names
             product_stats_grouped["hybrid"]  += product_stats[product]
-        elif product in ["RRE-containing", "LAP", "lanthipeptide-class-iv", "thiopeptide"]:                     # Products from class RiPP
+        elif product in ["RRE-containing", "LAP", "lanthipeptide-class-i", "lanthipeptide-class-ii", "lanthipeptide-class-iii", "lanthipeptide-class-iv", "thiopeptide"]:                     # Products from class RiPP
             product_stats_grouped["RiPP"]    += product_stats[product]
         else:                                                                                                   # Products that do not belong to any predefined groups
             product_stats_grouped["others"]  += product_stats[product]
