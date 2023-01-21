@@ -111,7 +111,7 @@ def TASK_1():
         # # -----------Checkpoint for name collision of output: if an antiSMASH-output directory exists with same name-----------------------
 
         # # --------------Run antiSMASH for each input file---------------
-        if side_options.verbose == True: print("\n\n\n>>> Running antiSMASH for file \"" + name_of_inputfile + "\"...")
+        if side_options.verbose == True: print("\n\n\n> Running antiSMASH for file \"" + name_of_inputfile + "\"...")
         number_of_antismash_runs += run_antismash.run_antismash(path_of_inputfile, path_of_antismash_output_directory) # Run antiSMASH for input file and update the number of antiSMASH runs.
         # # --------------Run antiSMASH for each input file---------------
 
