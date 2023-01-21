@@ -1,4 +1,4 @@
-''' This module keeps the Boolean values for the "quick-switch" variables (i.e. control variables) that involve in activating or deactivating certain optional functions/features that are coded in other modules. '''
+''' This module keeps the Boolean values for the "quick-switch" variables (i.e. control variables) that activate or deactivate certain optional functions/features that are coded in other modules. '''
 
 
 # IMPORTANT: Only assign "True" or "False" for the following option-variables!
@@ -12,7 +12,7 @@ rename_output_if_name_collides                              = True              
 
 
 # # -----------Side option-----------------------
-verbose                                                     = True             # True: print to text terminal verbose information, e.g. for debugging (encoded by command "print()" in main program "start_and_command.py").
+verbose                                                     = True              # True: print to text terminal verbose information, e.g. for debugging (encoded by the commands "print()" in main program "start_and_command.py").
                                                                                 # False: print only important results and information to text terminal (note: this option has no influence on standard output of antiSMASH and BiGSCAPE).
 # # -----------Side option-----------------------
 
@@ -36,12 +36,12 @@ clear_output_of_task_1                                      = False             
 clear_output_of_task_2                                      = True             # True: empty output directory of task before performing task. Use this option when wish to execute this one task only, otherwise next task will not have input. This option can avoid name collision of output as well as interference of results and reduce size of output directory.
                                                                                 # Note: be careful not to remove important files or data unintentionally!
 
-group_products_in_predefined_groups                         = True              # True: group all found products into predefined groups (these groups can be adapted in module "stats_utils.py").
-                                                                                # False: all found products will be sorted according to their frequencies.
+group_products_in_predefined_groups                         = False             # True: group all found products into predefined groups to simplify output products (these product groups can be adapted in module "stats_utils.py").
+                                                                                # False: all found products will only be sorted according to their frequencies.
 
-show_plots                                                  = False             # True: interrupt and show plots during the execution of pipeline. After closing all plots, pipeline will resume executing specified task(s).
+show_plots                                                  = False             # True: interrupt and show plots during the execution of pipeline. The pipeline will resume executing specified task(s), once the window showing the plot has been closed.
 
-add_note_to_plot                                            = False             # True: add an annotation note to plots of BGC-selection and product(s) of selected BGCs (contains values of input parameters).
+add_note_to_plot                                            = False             # True: add an annotation note to plots of BGC-selection and product(s) of selected BGCs (note contains e.g. values of input parameters).
 
 fill_background_plot_with_grey                              = False             # True: fill background of all plots (with grey) for better contrast.
 # # -----------Options in task 2 (BGC-selection)-----------------------
