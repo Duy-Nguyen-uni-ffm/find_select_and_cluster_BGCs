@@ -456,7 +456,7 @@ def Entry_Point():
         # # --------------Execute all specified task(s)------------------
         
         # # --------------Change permission of all files and folders in common directory------------------
-        change_permit.change_permit_of_all_dirs_and_files_in_common_dir() # Allow access to all output files (in case some output files are created by docker, e.g. after running antiSMASH and BiGSCAPE, and initially not accessible by user).
+        change_permit.change_permit_of_all_folders_and_files_in_common_dir() # Allow access to all output files (in case some output files are created by docker, e.g. after running antiSMASH and BiGSCAPE, and initially not accessible by user).
         # # --------------Change permission of all files and folders in common directory------------------
 
         print("\n\n\n>>> All specified task(s) completed!\n\n") # Exit point: main program will end here if executed successfully.
@@ -494,10 +494,10 @@ def Entry_Point():
         # # --------------Execute all tasks------------------
         
         # # --------------Change permission of all files and folders in common directory------------------
-        change_permit.change_permit_of_all_dirs_and_files_in_common_dir() # Allow access to all output files (in case some output files are created by docker, e.g. after running antiSMASH and BiGSCAPE, and initially not accessible by user).
+        change_permit.change_permit_of_all_folders_and_files_in_common_dir() # Allow access to all output files (in case some output files are created by docker, e.g. after running antiSMASH and BiGSCAPE, and initially not accessible by user).
         # # --------------Change permission of all files and folders in common directory------------------
 
-        print("\n\n\n>>> All specified task(s) completed!\n\n") # Exit point: main program will end here if executed successfully.
+        print("\n\n\n>>> All executable tasks completed!\n\n") # Exit point: main program will end here if executed successfully.
 
 # # --------------------------------------------------------------------------USER-INTERFACE (starting point of main program)--------------------------------------------------------------------------
 
