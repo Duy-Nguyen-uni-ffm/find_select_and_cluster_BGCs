@@ -1,5 +1,5 @@
-''' This is the main program that creates the USER-INTERFACE and lets user specify task(s) to be executed (done by the function "Entry_Point"). For this, the program integrates other modules and, once finished checking if their (unzipped) input is available and compatible (in the CHECKPOINTS) as well as removing/renaming
-    input files with duplicate name and checking for name collision as well as finding a unique name for output of each task, EXECUTES the functions in these modules that fulfill the user-specified task(s) coordinately, or, in case the input cannot be found, prints out an error message (for debugging) and terminates the corresponding task (i.e. one of the functions "TASK_1", "TASK_2", "TASK_3"). '''
+''' This is the main program that creates the USER-INTERFACE and lets user specify task(s) to be executed (see function "Entry_Point" below). For this, the program integrates other modules and, once finished checking if their (unzipped) input is available and compatible (in the CHECKPOINTS) as well as removing/renaming
+    input files with duplicate name and checking for name collision as well as preparing a unique name for the output, EXECUTES the functions in these modules that will fulfill the user-specified task(s) coordinately, or, in case the input cannot be found, prints out an error message (for debugging) and terminates the corresponding task (i.e. one of the functions "TASK_1", "TASK_2", "TASK_3"). '''
 
 
 import re
@@ -47,10 +47,6 @@ def TASK_1():
     Genbank (.gbk) file(s) of detected BGCs in given input file(s).
     """
     print("\n\n\n>>> Initiating task 1 (BGC-detection by antiSMASH)...")
-    
-    # # --------------Change permission of all files and folders in common directory------------------
-    change_permit.change_permit_of_all_dirs_and_files_in_common_dir() # Allow access to all input files (in case some input files are initially not accessible by user).
-    # # --------------Change permission of all files and folders in common directory------------------   
 
     # # --------------Define paths and create directory for input and output of task---------------
     path_of_input_dir_for_task_1  = create.create_directory_if_not_exists(names_and_paths.path_of_directory_of_input_for_antismash)
@@ -86,9 +82,9 @@ def TASK_1():
                 inputpaths.append(path_of_inputfile) # Note: a list can generally hold up to 9223372036854775807 elements. So this list can contain max. that many paths of input files.
     # # --------------Loop through input directory and find path(s) of all input file(s) for task---------------
 
-    # # --------------Preprocess input---------------
+    # # --------------Deduplicate input---------------
     deduplicate.remove_or_rename_files_with_duplicate_name(inputpaths) # Remove or rename paths in the list for antiSMASH-input files with duplicate name, which will make a list of paths of input files with unique name so that their antiSMASH-output directories, which have the same name as their input files and are created in the same directory (directory for antiSMASH-output), do not conflict in their names.
-    # # --------------Preprocess input---------------
+    # # --------------Deduplicate input---------------
 
     start_antismash_run = time.time() # Start timing gene prediction by antiSMASH.
     number_of_antismash_runs = 0 # For results report.
@@ -158,10 +154,6 @@ def TASK_2(param_for_preliminary_selection, param_for_main_selection, param_for_
     Genbank (.gbk) file(s) of BGCs that passed main or second-chance selection (content unmodified compared to input file(s)).
     """
     print("\n\n\n>>> Initiating task 2 (BGC-selection)...")
-    
-    # # --------------Change permission of all files and folders in common directory------------------
-    change_permit.change_permit_of_all_dirs_and_files_in_common_dir() # Allow access to all input files (in case some input files are initially not accessible by user).
-    # # --------------Change permission of all files and folders in common directory------------------
 
     # # --------------Define paths and create directory for input and output of task---------------
     path_of_input_dir_for_task_2  = create.create_directory_if_not_exists(names_and_paths.path_of_directory_of_output_from_antismash)
@@ -197,9 +189,9 @@ def TASK_2(param_for_preliminary_selection, param_for_main_selection, param_for_
                 inputpaths.append(path_of_inputfile)
     # # --------------Loop through input directory and find path(s) of all input file(s) for task---------------
 
-    # # --------------Preprocess input---------------
+    # # --------------Deduplicate input---------------
     deduplicate.remove_or_rename_files_with_duplicate_name(inputpaths) # Remove or rename paths in the list of antiSMASH-output files with duplicate name, which will make a list of paths of input files each with a unique name.
-    # # --------------Preprocess input---------------
+    # # --------------Deduplicate input---------------
 
     start_analysis = time.time() # For results report.
 
@@ -315,10 +307,6 @@ def TASK_3(cutoffs):
     An output directory that contains the file "index.html" with the results of similarity analysis.
     """
     print("\n\n\n>>> Initiating task 3 (similarity analysis by BiG-SCAPE CORASON)...")
-    
-    # # --------------Change permission of all files and folders in common directory------------------
-    change_permit.change_permit_of_all_dirs_and_files_in_common_dir() # Allow access to all input files (in case some input files are initially not accessible by user).
-    # # --------------Change permission of all files and folders in common directory------------------
 
     # # --------------Define paths and create directory for input and output of task---------------
     path_of_input_dir_for_task_3  = create.create_directory_if_not_exists(names_and_paths.path_of_directory_of_selected_BGCs)
@@ -360,9 +348,9 @@ def TASK_3(cutoffs):
                     inputpaths.append(path_of_inputfile)
     # # --------------Loop through input directory and find path(s) of all input file(s) for task---------------
 
-    # # --------------Preprocess input---------------
+    # # --------------Deduplicate input---------------
     deduplicate.remove_or_rename_files_with_duplicate_name(inputpaths) # Remove or rename paths in the list of antiSMASH-output files with duplicate name, which will make a list of paths of input files each with a unique name.
-    # # --------------Preprocess input---------------
+    # # --------------Deduplicate input---------------
 
     task_executed_successfully = False # Define a control variable for reporting results. This variable assumes at the beginning that the task is not (yet) successfully executed.
 
