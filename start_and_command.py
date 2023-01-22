@@ -506,4 +506,6 @@ if __name__ == '__main__':
     Entry_Point() # Call main function that starts pipeline, only if this script is executed directly (and not as an imported module).
 
 
-# Note to myself: sys.argv[1] can be used to take path of input directory from argument of running command. However, the question is, whether the user is willing to type a lot...
+# Note for myself: sys.argv[1] can be used to take path of input directory from argument of running command. However, the question is, whether the user is willing to type a lot... 
+# Also note for myself: consider to improve codes for renaming duplicate files: ..._renamed_1, ..._renamed_2, ..._renamed_3, etc.
+
