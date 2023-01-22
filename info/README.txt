@@ -89,3 +89,6 @@ ________________________________________________________________________________
 > In case there are input files that have different names but contain data for the same BGC, these files can all be analyzed and later identified as duplicate BGCs on the similarity network created by BiG-SCAPE CORASON.
 
 ________________________________________________________________________________________________________________________
+
+
+(Last updated and tested on: 22/01/2023)
