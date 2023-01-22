@@ -38,7 +38,7 @@ RUN (IMPORTANT)
 > Run the pipeline by typing in Terminal (also in common directory):
 ./run_pipeline
 > Note: user password might be needed at the beginning of every run as pipeline is executed with sudo, i.e. root privileges!
-> Note: at the very first run of pipeline with task 1 and/or 3, certain large-sized packages will be installed for antiSMASH and BiG-SCAPE CORASON. This installation only happens at the very first run of pipeline, and will take about 40 minutes. In the next runs, no further installation will be executed.
+> Note: at the very first run of pipeline with task 1 and/or 3, certain large-sized packages will be installed for antiSMASH and BiG-SCAPE CORASON. This installation only happens at the very first run of pipeline, and will take about 45 minutes. In the next runs, no further installation will be executed.
 
 ________________________________________________________________________________________________________________________
 
