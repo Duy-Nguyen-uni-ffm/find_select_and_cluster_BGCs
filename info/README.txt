@@ -19,7 +19,7 @@ ________________________________________________________________________________
 
 SETUP (IMPORTANT)
 
->>> Command for installing two utility tools (curl and docker, if not available on system), and the two required third-party programs, i.e. antiSMASH and BiG-SCAPE CORASON, to the designated directory "thirdparty_programs" (if the two programs not preinstalled on local computer or installed in different locations):
+>>> Command for installing two utility tools (curl and docker, if not available on system), and the two required third-party programs (latest versions of both), which are antiSMASH and BiG-SCAPE CORASON, to the designated directory "thirdparty_programs" (if the two programs not preinstalled on local computer or installed in different locations):
 
 > Run all-in-one setup file "setup.py" by typing in Terminal (opened in common directory, that is, directory that contains all files of pipeline):
 python setup.py
